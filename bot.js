@@ -43,7 +43,7 @@ bot.on('messageCreate', async (msg) => {
         }
     }
 
-    if (msg.content == "aber") {
+    if (msg.content == "aber el prode") {
 
         try {
             let cl = auth();
