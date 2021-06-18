@@ -24,7 +24,7 @@ bot.on('messageCreate', async (msg) => {
                 .then(function (response) {
                     let tuvieja = [];
                     response.data.leaderboard.map((r, index, array) => tuvieja.push((index + 1) + " " + r.name + " " + r.rating));
-                    msg.channel.createMessage(tuvieja.join('\n'));
+                    msg.channel.createMessage(tuvieja.join('\n') + "\n PD: Utena tkm 😍");
                 })
                 .catch(function (error) {
                     // handle error
