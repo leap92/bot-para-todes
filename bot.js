@@ -14,7 +14,7 @@ bot.on('ready', () => {
 // If it was, the bot will attempt to respond with "Present".
 bot.on('messageCreate', async (msg) => {
     const botWasMentioned = msg.mentions.find(
-        mentionedUser => mentionedUser.id === bot.user.id,
+        mentionedUser => mentionedUser.id === bot.user.id && msg.channel.name == "rank"
     );
 
     if (botWasMentioned) {
