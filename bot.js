@@ -3,6 +3,8 @@ const axios = require('axios');
 
 // Create a Client instance with our bot token.
 const bot = new eris.Client('ODU1MjQxMjk3NDc2MTkwMjI4.YMvnhg.zhaYZ22-xEnFhELTQTl2SWD-wPA');
+const { google } = require("googleapis");
+const auth = require('./auth');
 
 // When the bot is connected and ready, log to console.
 bot.on('ready', () => {
@@ -31,6 +33,43 @@ bot.on('messageCreate', async (msg) => {
                     console.log(error);
                 })
             //await msg.channel.createMessage('Present');
+        } catch (err) {
+            // There are various reasons why sending a message may fail.
+            // The API might time out or choke and return a 5xx status,
+            // or the bot may not have permission to send the
+            // message (403 status).
+            console.warn('Failed to respond to mention.');
+            console.warn(err);
+        }
+    }
+
+    if (msg.content == "aber") {
+
+        try {
+            let cl = auth();
+            const gsapi = google.sheets({ version: 'v4', auth: cl });
+            const opt1 = {
+                spreadsheetId: '1nVvIYIGSdSuCGhucyOWqhuS392AEiM69lUm-0VCKD8Q',
+                range: 'Ranking!A2:A25'
+            }
+
+            let jugadoresResponse = await gsapi.spreadsheets.values.get(opt1);
+            let jugadores = jugadoresResponse.data.values;
+
+            const opt2 = {
+                spreadsheetId: '1nVvIYIGSdSuCGhucyOWqhuS392AEiM69lUm-0VCKD8Q',
+                range: 'Ranking!B2:B25'
+            }
+
+            let puntosResponse = await gsapi.spreadsheets.values.get(opt2);
+            let puntos = puntosResponse.data.values;
+
+            let mensaje = '';
+            for (let index = 0; index < jugadores.length; index++) {
+                mensaje += jugadores[index] + ' ' + puntos[index] + '\n';
+            }
+
+            await msg.channel.createMessage(mensaje);
         } catch (err) {
             // There are various reasons why sending a message may fail.
             // The API might time out or choke and return a 5xx status,
