@@ -50,7 +50,7 @@ bot.on('messageCreate', async (msg) => {
             const gsapi = google.sheets({ version: 'v4', auth: cl });
             const opt1 = {
                 spreadsheetId: '1nVvIYIGSdSuCGhucyOWqhuS392AEiM69lUm-0VCKD8Q',
-                range: 'Ranking!A2:A25'
+                range: 'Ranking!K2:K25'
             }
 
             let jugadoresResponse = await gsapi.spreadsheets.values.get(opt1);
@@ -58,7 +58,7 @@ bot.on('messageCreate', async (msg) => {
 
             const opt2 = {
                 spreadsheetId: '1nVvIYIGSdSuCGhucyOWqhuS392AEiM69lUm-0VCKD8Q',
-                range: 'Ranking!B2:B25'
+                range: 'Ranking!L2:L25'
             }
 
             let puntosResponse = await gsapi.spreadsheets.values.get(opt2);
