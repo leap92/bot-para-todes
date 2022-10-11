@@ -23,10 +23,14 @@ bot.on('messageCreate', async (msg) => {
         try {
             const leaderboard_id = msg.content.includes("tg") ? 4 : 3;
             await axios
-                .get(`https://aoe2.net/api/leaderboard?game=aoe2de&leaderboard_id=${leaderboard_id}&start=1&count=10000&search=[TodEs]`)
+                .get(`https://aoestats.net/api/leaderboard?leaderboard=3&page=1&playerName=[TodEs]}`)
                 .then(function (response) {
                     let tuvieja = [];
-                    response.data.leaderboard.map((r, index, array) => tuvieja.push((index + 1) + " " + r.name + " " + r.rating));
+                    let baneados = ["/steam/76561199286934474", "/steam/76561199384454412"]
+                    response.data.leaderboard
+                        .filter(r => baneados.includes(r.steamId))
+                        .sort(r => r.rating)
+                        .map((r, index, array) => tuvieja.push((index + 1) + " " + r.name + " " + r.rating));
                     msg.channel.createMessage(tuvieja.join('\n') + "\n PD: Utena tkm 😍");
                 })
                 .catch(function (error) {
