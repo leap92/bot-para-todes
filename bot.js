@@ -23,7 +23,7 @@ bot.on('messageCreate', async (msg) => {
         try {
             const leaderboard_id = msg.content.includes("tg") ? 4 : 3;
             await axios
-                .get(`https://aoestats.net/api/leaderboard?leaderboard=3&page=1&playerName=[TodEs]}`)
+                .get(`https://aoestats.net/api/leaderboard?leaderboard=3&page=1&playerName=[TodEs]`)
                 .then(function (response) {
                     let tuvieja = [];
                     let baneados = ["/steam/76561199286934474", "/steam/76561199384454412"]
