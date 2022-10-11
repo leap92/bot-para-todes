@@ -1,5 +1,6 @@
 const eris = require('eris');
 const axios = require('axios');
+const _ = require('lodash')
 
 // Create a Client instance with our bot token.
 const bot = new eris.Client('ODU1MjQxMjk3NDc2MTkwMjI4.YMvnhg.zhaYZ22-xEnFhELTQTl2SWD-wPA');
@@ -23,15 +24,16 @@ bot.on('messageCreate', async (msg) => {
         try {
             const leaderboard_id = msg.content.includes("tg") ? 4 : 3;
             await axios
-                .get(`https://aoestats.net/api/leaderboard?leaderboard=3&playerName=[TodEs]`)
+                .get(`https://aoestats.net/api/leaderboard?leaderboard=${leaderbord_id}&playerName=[TodEs]`)
                 .then(function (response) {
-                    let tuvieja = [];
+                    let players = [];
                     let baneados = ["/steam/76561199286934474", "/steam/76561199384454412"]
                     response.data.players
                         .filter(r => !baneados.includes(r.steamId))
-                        .sort(r => r.rating)
-                        .map((r, index, array) => tuvieja.push((index + 1) + " " + r.name + " " + r.rating));
-                    msg.channel.createMessage(tuvieja.join('\n') + "\n PD: Utena tkm 😍");
+                        .map((r, index) => players.push((index + 1) + " " + r.name + " " + r.rating));
+                    
+                    let orderedPlayers = _.orderBy(players, ['rating'], ['desc']);
+                    msg.channel.createMessage(orderedPlayers.join('\n') + "\n PD: Utena tkm 😍");
                 })
                 .catch(function (error) {
                     // handle error
