@@ -26,14 +26,12 @@ bot.on('messageCreate', async (msg) => {
             await axios
                 .get(`https://aoestats.net/api/leaderboard?leaderboard=${leaderboard_id}&playerName=[TodEs]`)
                 .then(function (response) {
-                    let players = [];
                     let baneados = ["/steam/76561199286934474", "/steam/76561199384454412"]
-                    response.data.players
-                        .filter(r => !baneados.includes(r.steamId))
-                        .map((r, index) => players.push((index + 1) + " " + r.name + " " + r.rating));
-                    
+                    let players = response.data.players.filter(r => !baneados.includes(r.steamId));                    
                     let orderedPlayers = _.orderBy(players, ['rating'], ['desc']);
-                    msg.channel.createMessage(orderedPlayers.join('\n') + "\n PD: Utena tkm 😍");
+                    msg.channel.createMessage(orderedPlayers
+                        .map((r, index) => index + 1 + " " + r.name + " " + r.rating)
+                        .join('\n') + "\n PD: Utena tkm 😍");
                 })
                 .catch(function (error) {
                     // handle error
