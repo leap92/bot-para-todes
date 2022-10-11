@@ -28,7 +28,7 @@ bot.on('messageCreate', async (msg) => {
                     let tuvieja = [];
                     let baneados = ["/steam/76561199286934474", "/steam/76561199384454412"]
                     response.data.players
-                        .filter(r => baneados.includes(r.steamId))
+                        .filter(r => !baneados.includes(r.steamId))
                         .sort(r => r.rating)
                         .map((r, index, array) => tuvieja.push((index + 1) + " " + r.name + " " + r.rating));
                     msg.channel.createMessage(tuvieja.join('\n') + "\n PD: Utena tkm 😍");
