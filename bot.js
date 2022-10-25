@@ -24,7 +24,7 @@ bot.on('messageCreate', async (msg) => {
         try {
             const leaderboard_id = msg.content.includes("tg") ? 4 : 3;
             await axios
-                .get(`https://legacy.aoe2companion.com/api/leaderboard?leaderboard=${leaderboard_id}&search=[TodEs]&start=1&count=100`)
+                .get(`https://legacy.aoe2companion.com/api/leaderboard?leaderboard_id=${leaderboard_id}&search=[TodEs]&start=1&count=100`)
                 .then(function (response) {
                     let baneados = [10934723]; //falope
                     let players = response.data.leaderboard.filter(r => !baneados.includes(r.profile_id));                    
