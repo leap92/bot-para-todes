@@ -20,6 +20,7 @@ bot.on('messageCreate', async (msg) => {
         mentionedUser => mentionedUser.id === bot.user.id && msg.channel.name == "rank"
     );
 
+    
     if (botWasMentioned) {
         try {
             const leaderboard_id = msg.content.includes("tg") ? 4 : 3;
