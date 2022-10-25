@@ -24,10 +24,10 @@ bot.on('messageCreate', async (msg) => {
         try {
             const leaderboard_id = msg.content.includes("tg") ? 4 : 3;
             await axios
-                .get(`https://aoestats.net/api/leaderboard?leaderboard=${leaderboard_id}&playerName=[TodEs]`)
+                .get(`https://legacy.aoe2companion.com/api/leaderboard?leaderboard=${leaderboard_id}&search=[TodEs]&start=1&count=100`)
                 .then(function (response) {
-                    let baneados = ["/steam/76561199286934474", "/steam/76561199384454412"]
-                    let players = response.data.players.filter(r => !baneados.includes(r.steamId));                    
+                    let baneados = [10934723]; //falope
+                    let players = response.data.leaderboard.filter(r => !baneados.includes(r.profile_id));                    
                     let orderedPlayers = _.orderBy(players, ['rating'], ['desc']);
                     msg.channel.createMessage(orderedPlayers
                         .map((r, index) => index + 1 + " " + r.name + " " + r.rating)
