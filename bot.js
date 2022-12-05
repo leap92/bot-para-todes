@@ -1,11 +1,9 @@
-const eris = require('eris');
-const axios = require('axios');
-const _ = require('lodash')
+import { Client } from 'eris';
+import { get } from 'axios';
+import { orderBy } from 'lodash';
 
 // Create a Client instance with our bot token.
-const bot = new eris.Client('ODU1MjQxMjk3NDc2MTkwMjI4.YMvnhg.zhaYZ22-xEnFhELTQTl2SWD-wPA');
-const { google } = require("googleapis");
-const auth = require('./auth');
+const bot = new Client('ODU1MjQxMjk3NDc2MTkwMjI4.YMvnhg.zhaYZ22-xEnFhELTQTl2SWD-wPA');
 
 // When the bot is connected and ready, log to console.
 bot.on('ready', () => {
@@ -19,17 +17,15 @@ bot.on('messageCreate', async (msg) => {
     const botWasMentioned = msg.mentions.find(
         mentionedUser => mentionedUser.id === bot.user.id && msg.channel.name == "rank"
     );
-
     
     if (botWasMentioned) {
         try {
             const leaderboard_id = msg.content.includes("tg") ? 4 : 3;
-            await axios
-                .get(`https://legacy.aoe2companion.com/api/leaderboard?leaderboard_id=${leaderboard_id}&search=[TodEs]&start=1&count=100`)
+            await get(`https://legacy.aoe2companion.com/api/leaderboard?leaderboard_id=${leaderboard_id}&search=[TodEs]&start=1&count=100`)
                 .then(function (response) {
                     let baneados = [10934723]; //falope
                     let players = response.data.leaderboard.filter(r => !baneados.includes(r.profile_id));                    
-                    let orderedPlayers = _.orderBy(players, ['rating'], ['desc']);
+                    let orderedPlayers = orderBy(players, ['rating'], ['desc']);
                     msg.channel.createMessage(orderedPlayers
                         .map((r, index) => index + 1 + " " + r.name + " " + r.rating)
                         .join('\n') + "\n PD: Utena tkm 😍");
@@ -39,43 +35,6 @@ bot.on('messageCreate', async (msg) => {
                     console.log(error);
                 })
             //await msg.channel.createMessage('Present');
-        } catch (err) {
-            // There are various reasons why sending a message may fail.
-            // The API might time out or choke and return a 5xx status,
-            // or the bot may not have permission to send the
-            // message (403 status).
-            console.warn('Failed to respond to mention.');
-            console.warn(err);
-        }
-    }
-
-    if (msg.content == "aber el prode") {
-
-        try {
-            let cl = auth();
-            const gsapi = google.sheets({ version: 'v4', auth: cl });
-            const opt1 = {
-                spreadsheetId: '1nVvIYIGSdSuCGhucyOWqhuS392AEiM69lUm-0VCKD8Q',
-                range: 'Ranking!K2:K25'
-            }
-
-            let jugadoresResponse = await gsapi.spreadsheets.values.get(opt1);
-            let jugadores = jugadoresResponse.data.values;
-
-            const opt2 = {
-                spreadsheetId: '1nVvIYIGSdSuCGhucyOWqhuS392AEiM69lUm-0VCKD8Q',
-                range: 'Ranking!L2:L25'
-            }
-
-            let puntosResponse = await gsapi.spreadsheets.values.get(opt2);
-            let puntos = puntosResponse.data.values;
-
-            let mensaje = '';
-            for (let index = 0; index < jugadores.length; index++) {
-                mensaje += jugadores[index] + ' ' + puntos[index] + '\n';
-            }
-
-            await msg.channel.createMessage(mensaje);
         } catch (err) {
             // There are various reasons why sending a message may fail.
             // The API might time out or choke and return a 5xx status,
