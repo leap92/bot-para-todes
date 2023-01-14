@@ -4,7 +4,6 @@ const axios = require('axios');
 // Create a Client instance with our bot token.
 const bot = new eris.Client('ODU1MjQxMjk3NDc2MTkwMjI4.YMvnhg.zhaYZ22-xEnFhELTQTl2SWD-wPA');
 const { google } = require("googleapis");
-const auth = require('./auth');
 
 // When the bot is connected and ready, log to console.
 bot.on('ready', () => {
