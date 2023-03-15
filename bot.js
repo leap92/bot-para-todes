@@ -1,5 +1,6 @@
 const eris = require('eris');
 const axios = require('axios');
+const _ = require('lodash');
 
 // Create a Client instance with our bot token.
 const bot = new eris.Client('ODU1MjQxMjk3NDc2MTkwMjI4.YMvnhg.zhaYZ22-xEnFhELTQTl2SWD-wPA');
@@ -20,7 +21,7 @@ bot.on('messageCreate', async (msg) => {
 
     if (botWasMentioned) {
         try {
-            const leaderboard_id = msg.content === "tg" ? 4 : 3;
+            const leaderboard_id = _.includes(msg.content, "tg") ? 4 : 3;
             await axios
                 .get(`https://aoe2.net/api/leaderboard?game=aoe2de&leaderboard_id=${leaderboard_id}&start=1&count=10000&search=[TodEs]`)
                 .then(function (response) {
