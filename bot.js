@@ -3,7 +3,7 @@ const axios = require('axios');
 const _ = require('lodash');
 
 // Create a Client instance with our bot token.
-const bot = new eris.Client('ODU1MjQxMjk3NDc2MTkwMjI4.YMvnhg.zhaYZ22-xEnFhELTQTl2SWD-wPA');
+const bot = new eris.Client('ODU1MjQxMjk3NDc2MTkwMjI4.GZmQor.QSpnqYn8Ffy8HhUZIPI9tRsD3vmHifcaBMzPH0');
 const { google } = require("googleapis");
 
 // When the bot is connected and ready, log to console.
