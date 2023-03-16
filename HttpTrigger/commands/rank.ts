@@ -21,8 +21,7 @@ export class RankCommand extends SlashCommand {
         },
       ],
     };
-    if (env.COMMANDS_GUILD_ID)
-      cDesc = Object.assign(cDesc, { guildIDs: [env.COMMANDS_GUILD_ID] });
+    cDesc = Object.assign(cDesc, { guildIDs: ["690597961775972452"] });
 
     super(creator, cDesc);
 
