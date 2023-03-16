@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "baseName": {
-      "defaultValue": "srvlbot",
+      "defaultValue": "bot-para-todes",
       "type": "string",
       "metadata": {
         "description": "Name use as base-template to named the resources to be deployed in Azure."
@@ -60,7 +60,7 @@
           "appSettings": [
             {
               "name": "FUNCTIONS_EXTENSION_VERSION",
-              "value": "~3"
+              "value": "~4"
             },
             {
               "name": "FUNCTIONS_WORKER_RUNTIME",
@@ -68,7 +68,7 @@
             },
             {
               "name": "WEBSITE_NODE_DEFAULT_VERSION",
-              "value": "10.14.1"
+              "value": "19.8.1"
             },
             {
               "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
@@ -84,19 +84,19 @@
             },
             {
               "name": "BOT_APP_ID",
-              "value": "[parameters('applicationId')]"
+              "value": "855241297476190228"
             },
             {
               "name": "BOT_APP_PUBLIC_KEY",
-              "value": "[parameters('applicationPublicKey')]"
+              "value": "b9b1b9cbe84fdc1f3a8fdf412cca70f5d30134453c95c48f41386915418fd55a"
             },
             {
               "name": "BOT_APP_TOKEN",
-              "value": "[parameters('applicationToken')]"
+              "value": "ODU1MjQxMjk3NDc2MTkwMjI4.YMvnhg.zhaYZ22-xEnFhELTQTl2SWD-wPA"
             },
             {
               "name": "COMMANDS_GUILD_ID",
-              "value": "[parameters('guildId')]"
+              "value": "690597961775972452"
             },
             {
               "name": "WEBSITE_RUN_FROM_ZIP",
