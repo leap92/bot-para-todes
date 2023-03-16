@@ -47,6 +47,6 @@ export class RankCommand extends SlashCommand {
         console.log(error);
       });
 
-    return "Algo se rompio";
+    return "Algo se rompio ";
   }
 }
