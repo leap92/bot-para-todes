@@ -5,7 +5,7 @@ import {
   SlashCreator,
 } from "slash-create";
 import { env } from "process";
-import { axios } from "axios";
+import axios  from "axios";
 
 export class RankCommand extends SlashCommand {
   constructor(creator: SlashCreator) {
