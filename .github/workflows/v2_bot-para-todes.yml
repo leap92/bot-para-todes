@@ -41,4 +41,4 @@ jobs:
           app-name: 'bot-para-todes'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BF51C430EA7E466DA7B92992C219A842 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7AD0D904DACB4586876DA0775A336C4F }}
