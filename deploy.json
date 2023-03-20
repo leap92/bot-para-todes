@@ -100,7 +100,7 @@
             },
             {
               "name": "WEBSITE_RUN_FROM_ZIP",
-              "value": "https://github.com/SoTrx/azure-serverless-discord-bot/releases/latest/download/default.azure-serverless-discord-bot.zip"
+              "value": "https://github.com/leap92/bot-para-todes-v2/releases/latest/download/bot-para-todes.zip"
             }
           ],
           "use32BitWorkerProcess": false,
