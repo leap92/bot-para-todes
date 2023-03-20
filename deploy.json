@@ -100,7 +100,7 @@
             },
             {
               "name": "WEBSITE_RUN_FROM_ZIP",
-              "value": "https://github.com/leap92/bot-para-todes-v2/releases/latest/download/bot-para-todes.zip"
+              "value": "https://github.com/leap92/bot-para-todes-v2/releases/latest/download/default.bot-para-todes.zip"
             }
           ],
           "use32BitWorkerProcess": false,
